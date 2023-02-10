@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  min-height: 4rem;
+}
+
+.layoutContent {
+  display: flex;
+  flex-direction: column;
+  background-color: #eff3f8;
+  width: 100%;
+}
+
+.content {
+  background-color: #fff;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  min-height: 88%;
+}

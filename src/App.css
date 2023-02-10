@@ -1,0 +1,12 @@
+#root {
+  width: 100vw;
+}
+
+.App {
+  display: flex;
+  height: 100vh;
+}
+
+.Header {
+  width: 80vw;
+}
