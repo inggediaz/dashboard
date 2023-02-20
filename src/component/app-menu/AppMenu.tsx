@@ -1,7 +1,10 @@
+import MenuItem from '../menu-item/MenuItem'
+import { Items } from './AppMenu.styled'
+
 export default function AppMenu (): JSX.Element {
   return (
-    <ul>
-      <li className='item'>Leads</li>
-    </ul>
+    <Items>
+      <MenuItem />
+    </Items>
   )
 }
