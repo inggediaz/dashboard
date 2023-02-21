@@ -1,16 +1,23 @@
 import styled from '@emotion/styled'
 
-export const Item = styled.li({
+interface NavProps {
+  fontSize: string
+}
+export const Item = styled.li<NavProps>(props => ({
   cursor: 'pointer',
   display: 'flex',
   gap: '16px',
-  paddingBottom: '5px',
-  paddingTop: '5px',
-  borderRadius: '',
+  paddingBottom: '0.5rem',
+  paddingTop: '0.5rem',
+  paddingLeft: '0.5rem',
+  borderRadius: '5px',
+  fontSize: props.fontSize,
+  transitionDuration: '200ms',
+  width: '70%',
   '&:hover': {
-    background: 'grey'
+    background: '#ffffff26'
   }
-})
+}))
 
 export const ItemName = styled.span(() => ({}))
 

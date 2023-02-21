@@ -6,7 +6,7 @@ import AppMenu from '../app-menu/AppMenu'
 export default function MenuNav (): JSX.Element {
   const slider = useMenuStore(state => state.collapse)
   return (
-    <Nav width={slider ? '15rem' : '5rem'}>
+    <Nav width={slider ? '13rem' : '5rem'}>
       <LogoComponent />
       <AppMenu />
     </Nav>
