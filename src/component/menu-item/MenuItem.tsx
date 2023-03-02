@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useMenuStore } from '../../hooks/useMenu'
 import { Item, ItemName } from './MenuItem.styled'
 export default function MenuItem (): JSX.Element {
@@ -8,7 +9,11 @@ export default function MenuItem (): JSX.Element {
       fontSize={slider ? '1.2rem' : '1.5rem'}
       title={slider ? undefined : 'App 1'}
     >
-      {slider && <ItemName>App 1</ItemName>}
+      {slider && (
+        <ItemName>
+          <Link to='app'>App 1 </Link>
+        </ItemName>
+      )}
     </Item>
   )
 }

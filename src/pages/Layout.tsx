@@ -1,10 +1,13 @@
 import { ReactNode, FC, Suspense } from 'react'
 import LayoutHeader from '../component/LayoutHeader'
 import layout from './Layout.module.css'
-import Leads from './Leads'
+// import Leads from './Leads'
 import MenuNav from '../component/menu-nav/menu-nav'
-
-export default function Layout (): JSX.Element {
+import { Outlet } from 'react-router-dom'
+interface Props {
+  children?: ReactNode
+}
+export default function Layout ({ children }: Props): JSX.Element {
   const Footer = (): JSX.Element => {
     return <footer>Footer</footer>
   }
@@ -24,7 +27,7 @@ export default function Layout (): JSX.Element {
         <LayoutHeader />
         <Suspense fallback={<Spinner />}>
           <Content>
-            <Leads />
+            <Outlet />
           </Content>
         </Suspense>
         <Footer />
