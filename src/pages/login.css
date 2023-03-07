@@ -1,0 +1,30 @@
+.p-card-header {
+    margin: 40px 0px 40px 0px;
+    padding: 25px 40px;
+}
+
+.p-input-icon-left {
+    min-width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.p-card-header > p {
+    font-weight: bold;
+    color: #5C81A9;
+    font-size: 16px;
+}
+
+.bodyApp {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.p-card {
+    width: 32vh;
+}
+
+input {
+    width: 100%;
+}
