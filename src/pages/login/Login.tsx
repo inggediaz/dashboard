@@ -1,25 +1,28 @@
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
-import { Image } from 'primereact/image'
 import './login.css'
 import { Messages } from 'primereact/messages'
-import { useLogin } from '../hooks/useLogin'
+import { useLogin } from '../../hooks/useLogin'
+import LogoComponent from '../../svg/Logo'
+import { Header } from './Login.styled'
 
 export default function Login (): JSX.Element {
-  const { user, setUSer, handleSubmit, messages, loading } = useLogin()
-
+  const { user, messages, loading, setUser, handleSubmit } = useLogin()
+  // const hand = (e: FormEvent): void => {
+  //   e.preventDefault()
+  // }
   const header = (
-    <>
-      <Image src='assets/images/erc-logo.png' />
+    <Header>
+      <LogoComponent width='200px' height='200px' />
       <p className='flex justify-content-center'>Login App</p>
-    </>
+    </Header>
   )
   const footer = (
     <span>
       <Button
         loading={loading}
-        disabled={!user.username || !user.password}
+        disabled={user.username.length === 0 || user.password.length === 0}
         form='loginForm'
         type='submit'
         label='Login'
@@ -37,29 +40,29 @@ export default function Login (): JSX.Element {
               <InputText
                 placeholder='Username'
                 value={user.username}
-                onChange={event =>
-                  setUSer({
+                onChange={event => {
+                  setUser({
                     ...user,
-                    username: event.target.value
+                    username: event.currentTarget.value
                   })
-                }
+                }}
               />
             </span>
             <span className='p-input-icon-left'>
               <i className='pi pi-lock' />
               <InputText
-                type={'password'}
+                type='password'
                 placeholder='Password'
                 value={user.password}
-                onChange={event =>
-                  setUSer({
+                onChange={event => {
+                  setUser({
                     ...user,
-                    password: event.target.value
+                    password: event.currentTarget.value
                   })
-                }
+                }}
               />
             </span>
-            <Messages ref={messages}></Messages>
+            <Messages ref={messages} />
           </form>
         </Card>
       </div>

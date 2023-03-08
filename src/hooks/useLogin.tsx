@@ -1,16 +1,36 @@
-import { useMemo, useRef, useState } from 'react'
+import {
+  type MutableRefObject,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+  type FormEvent
+} from 'react'
 // import { authService } from '../service'
-// import { useDispatch, useStore, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-// import { setUser, reset } from '../store/user'
 
-export const useLogin = () => {
+// import { setUser, reset } from '../store/user'
+interface User {
+  username: string
+  password: string
+}
+
+interface IUseLogin {
+  user: User
+  setUser: Dispatch<SetStateAction<User>>
+  handleSubmit: (e: FormEvent) => void
+  messages: MutableRefObject<null>
+  loading: boolean
+}
+
+export const useLogin = (): IUseLogin => {
   const navigate = useNavigate()
-  const [user, setUSer] = useState({
+  const [user, setUser] = useState<User>({
     username: '',
     password: ''
   })
-  const [loading, setLoading] = useState(false)
+
+  const [loading, setLoading] = useState<boolean>(false)
   // const {
   //   login,
   //   getToken,
@@ -21,8 +41,8 @@ export const useLogin = () => {
   // const store = useStore()
   // const userSelector = useSelector(store => store.user)
 
-  const handleSubmit = async () => {
-    // e.preventDefault()
+  const handleSubmit = (e: FormEvent): void => {
+    e.preventDefault()
     setLoading(true)
     navigate('/dashboard')
     // try {
@@ -41,44 +61,33 @@ export const useLogin = () => {
     // }
   }
 
-  const validToken = async () => {
-    // const { user } = store.getState()
-    // const { entity: { userId } } = user
-    // try {
-    //   const result = await getToken({ user })
-    //   if (userId === 0 && !!result) {
-    //     dispatch(setUser(result))
-    //   }
-    // } catch (e) {
-    //   console.log(e)
-    //   throw new Error(e)
-    // }
-  }
+  // const validToken = async () => {
+  // const { user } = store.getState()
+  // const { entity: { userId } } = user
+  // try {
+  //   const result = await getToken({ user })
+  //   if (userId === 0 && !!result) {
+  //     dispatch(setUser(result))
+  //   }
+  // } catch (e) {
+  //   console.log(e)
+  //   throw new Error(e)
+  // }
+  // }
 
-  const getUser = () => {
-    // const {
-    //   entity: {
-    //     token,
-    //     ...result
-    //   }
-    // } = userSelector
-    // return result
-    return ''
-  }
-
-  const logout = () => {
-    // removeToken()
-    // dispatch(reset)
-  }
+  // const logout = () => {
+  // removeToken()
+  // dispatch(reset)
+  // }
 
   return {
     user,
-    setUSer,
+    setUser,
     handleSubmit,
     messages,
-    loading,
-    validToken,
-    getUser,
-    logout
+    loading
+    // validToken
+    // getUser,
+    // logout
   }
 }

@@ -7,7 +7,7 @@ export default function MenuNav (): JSX.Element {
   const slider = useMenuStore(state => state.collapse)
   return (
     <Nav width={slider ? '13rem' : '5rem'}>
-      <LogoComponent />
+      <LogoComponent width='24' height='24' />
       <AppMenu />
     </Nav>
   )

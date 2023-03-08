@@ -6,7 +6,7 @@ import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './pages/Layout'
-import Login from './pages/Login'
+import Login from './pages/login/Login'
 import ExampleApp from './pages/example-app/ExampleApp'
 
 function App (): JSX.Element {
