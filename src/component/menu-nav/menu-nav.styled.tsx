@@ -16,3 +16,13 @@ export const Nav = styled.nav<NavProps>(props => ({
     width: '5rem'
   }
 }))
+
+export const LogoSection = styled.section({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: '.5rem',
+  gap: '0.5rem'
+})
+
+export const LogoTitle = styled.h3({})

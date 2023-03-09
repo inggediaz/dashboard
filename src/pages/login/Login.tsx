@@ -9,9 +9,7 @@ import { Header } from './Login.styled'
 
 export default function Login (): JSX.Element {
   const { user, messages, loading, setUser, handleSubmit } = useLogin()
-  // const hand = (e: FormEvent): void => {
-  //   e.preventDefault()
-  // }
+
   const header = (
     <Header>
       <LogoComponent width='200px' height='200px' />
