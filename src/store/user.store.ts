@@ -1,17 +1,21 @@
 import { create } from 'zustand'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
 
-interface UseMenu {
-  collapse: boolean
-  toggle: () => void
+interface UserStore {
+  username: string
+  token: string
+  add: () => void
 }
 
-export const useMenuStore = create<UseMenu>()(
+export const useMenuStore = create<UserStore>()(
   devtools(
     persist(
       set => ({
-        collapse: true,
-        toggle: () => { set(state => ({ collapse: !state.collapse })) }
+        username: '',
+        token: '',
+        add: () => {
+          set(state => ({ username: state.username, token: state.token }))
+        }
       }),
       {
         name: 'assetStore',

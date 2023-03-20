@@ -1,13 +1,15 @@
 import {
-  type MutableRefObject,
   useRef,
   useState,
   type Dispatch,
   type SetStateAction,
-  type FormEvent
+  type FormEvent,
+  useMemo,
+  type RefObject
 } from 'react'
-// import { authService } from '../service'
+import { AuthService } from '../services/auth/AuthService'
 import { useNavigate } from 'react-router-dom'
+import { type Messages } from 'primereact/messages'
 
 // import { setUser, reset } from '../store/user'
 interface User {
@@ -18,8 +20,8 @@ interface User {
 interface IUseLogin {
   user: User
   setUser: Dispatch<SetStateAction<User>>
-  handleSubmit: (e: FormEvent) => void
-  messages: MutableRefObject<null>
+  handleSubmit: (e: FormEvent) => Promise<void>
+  messages: RefObject<Messages>
   loading: boolean
 }
 
@@ -31,34 +33,30 @@ export const useLogin = (): IUseLogin => {
   })
 
   const [loading, setLoading] = useState<boolean>(false)
-  // const {
-  //   login,
-  //   getToken,
-  //   removeToken
-  // } = useMemo(() => authService, [])
-  const messages = useRef(null)
+  const { login } = useMemo(() => new AuthService(), [])
+  const messages = useRef<Messages>(null)
   // const dispatch = useDispatch()
   // const store = useStore()
   // const userSelector = useSelector(store => store.user)
 
-  const handleSubmit = (e: FormEvent): void => {
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
     setLoading(true)
     navigate('/dashboard')
-    // try {
-    //   const result = await login(user)
-    //   // dispatch(setUser(result))
-    //   navigate('/')
-    //   setLoading(false)
-    // } catch (e) {
-    //   setLoading(false)
-    //   console.log(e.toString())
-    //   messages.current.show({
-    //     life: 3000,
-    //     severity: 'error',
-    //     detail: e.toString()
-    //   })
-    // }
+    try {
+      const tokenInfo = await login(user)
+      console.log(tokenInfo)
+      // dispatch(setUser(result))
+      navigate('/')
+      setLoading(false)
+    } catch (e) {
+      setLoading(false)
+      messages.current?.show({
+        life: 3000,
+        severity: 'error',
+        detail: e?.toString()
+      })
+    }
   }
 
   // const validToken = async () => {

@@ -22,5 +22,7 @@ export class AuthService implements IAuthService {
     return tokenInfo
   }
 
-  removeToken (): void {}
+  removeToken (): void {
+    // TODO Add code for remove token
+  }
 }
