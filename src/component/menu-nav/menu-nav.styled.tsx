@@ -22,7 +22,8 @@ export const LogoSection = styled.section({
   alignItems: 'center',
   justifyContent: 'center',
   margin: '.5rem',
-  gap: '0.5rem'
+  gap: '0.5rem',
+  cursor: 'pointer'
 })
 
 export const LogoTitle = styled.h3({})
