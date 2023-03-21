@@ -10,6 +10,8 @@ import {
 import { AuthService } from '../services/auth/AuthService'
 import { useNavigate } from 'react-router-dom'
 import { type Messages } from 'primereact/messages'
+// import { useMenuStore } from '../stores/user.store'
+import { useBoundStore } from '../stores'
 
 // import { setUser, reset } from '../store/user'
 interface User {
@@ -27,6 +29,7 @@ interface IUseLogin {
 
 export const useLogin = (): IUseLogin => {
   const navigate = useNavigate()
+  const addUserStore = useBoundStore(state => state.addUser)
   const [user, setUser] = useState<User>({
     username: '',
     password: ''
@@ -35,19 +38,16 @@ export const useLogin = (): IUseLogin => {
   const [loading, setLoading] = useState<boolean>(false)
   const { login } = useMemo(() => new AuthService(), [])
   const messages = useRef<Messages>(null)
-  // const dispatch = useDispatch()
-  // const store = useStore()
-  // const userSelector = useSelector(store => store.user)
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
     setLoading(true)
-    navigate('/dashboard')
+
     try {
-      const tokenInfo = await login(user)
-      console.log(tokenInfo)
-      // dispatch(setUser(result))
-      navigate('/')
+      const { username, token } = await login(user)
+      addUserStore({ username, token })
+
+      navigate('/dashboard')
       setLoading(false)
     } catch (e) {
       setLoading(false)

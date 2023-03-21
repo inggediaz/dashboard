@@ -6,16 +6,16 @@ import {
   MenuToggleButton
 } from './Header.styled'
 import UserSetting from './user-settings/UserSetting'
-import { useMenuStore } from '../hooks/useMenu'
+import { useBoundStore } from '../stores'
 
 export default function LayoutHeader (): JSX.Element {
-  const isCollapsed = useMenuStore(state => state.collapse)
+  const isCollapsed = useBoundStore(state => state.collapse)
   return (
     <Header>
       <HeaderCard>
         <ContentStart>
           <MenuToggleButton
-            onClick={useMenuStore(state => state.toggle)}
+            onClick={useBoundStore(state => state.toggle)}
             icon={`pi pi-arrow-${isCollapsed ? 'left' : 'right'}`}
             className='p-button-secondary p-button-outlined p-button-rounded'
           />

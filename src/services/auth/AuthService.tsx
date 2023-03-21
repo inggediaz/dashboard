@@ -9,7 +9,7 @@ export class AuthService implements IAuthService {
   }
 
   async login ({ username, password }: User): Promise<User> {
-    console.log(password)
+    // TODO Add fetch to login endpoint
     const token = await Promise.resolve('token')
     return { username, token }
   }

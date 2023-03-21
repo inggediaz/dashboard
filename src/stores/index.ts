@@ -1,17 +1,14 @@
 import { create } from 'zustand'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
+import { createUserSlice, type UserSlice } from './user.store'
+import { createAppSlice, type AppSlice } from './app.store'
 
-interface UseMenu {
-  collapse: boolean
-  toggle: () => void
-}
-
-export const useMenuStore = create<UseMenu>()(
+export const useBoundStore = create<UserSlice & AppSlice>()(
   devtools(
     persist(
-      set => ({
-        collapse: true,
-        toggle: () => { set(state => ({ collapse: !state.collapse })) }
+      (...a) => ({
+        ...createUserSlice(...a),
+        ...createAppSlice(...a)
       }),
       {
         name: 'assetStore',
