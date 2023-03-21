@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 interface NavProps {
   width: string
 }
-const smallAndBigger = '@media only screen and (max-width: 500px)'
+export const smallAndBigger = '@media only screen and (max-width: 500px)'
 export const Nav = styled.nav<NavProps>(props => ({
   width: props.width,
   background: '#343a40',
@@ -26,4 +26,8 @@ export const LogoSection = styled.section({
   cursor: 'pointer'
 })
 
-export const LogoTitle = styled.h3({})
+export const LogoTitle = styled.h3({
+  [smallAndBigger]: {
+    display: 'none'
+  }
+})

@@ -10,6 +10,7 @@ import { Avatar } from 'primereact/avatar'
 export default function UserSetting (): JSX.Element {
   const navigate = useNavigate()
   const resetUser = useBoundStore(state => state.resetUser)
+  const username = useBoundStore(state => state.username)
   const menu = useRef<Menu>(null)
   const toast = useRef<Toast>(null)
 
@@ -27,7 +28,9 @@ export default function UserSetting (): JSX.Element {
     {
       label: 'Logout',
       icon: 'pi pi-power-off',
-      command: e => { logout() }
+      command: e => {
+        logout()
+      }
     }
   ]
   // TODO Add the button collapse the menu
@@ -40,8 +43,9 @@ export default function UserSetting (): JSX.Element {
         className='p-link'
         onClick={e => menu.current?.toggle(e)}
       >
-        <Avatar image='https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp' />
-        <UserSettingSpan>Prime</UserSettingSpan>
+        {/* <Avatar image='https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp' /> */}
+        <Avatar label='GD' size='large' shape='circle' />
+        <UserSettingSpan>{username}</UserSettingSpan>
       </UserSettingButton>
     </div>
   )

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-
+import { smallAndBigger } from '../menu-nav/menu-nav.styled'
 interface NavProps {
   fontSize: string
 }
@@ -16,10 +16,17 @@ export const Item = styled.li<NavProps>(props => ({
   width: '70%',
   '&:hover': {
     background: '#ffffff26'
+  },
+  [smallAndBigger]: {
+    fontSize: '1.5rem'
   }
 }))
 
-export const ItemName = styled.span(() => ({}))
+export const ItemName = styled.span(() => ({
+  [smallAndBigger]: {
+    display: 'none'
+  }
+}))
 
 export const AppIcon = styled.li(() => ({
   color: '#32383e !important'
